@@ -1,0 +1,67 @@
+
+
+
+/* this will apply to all elements within the document */
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* how to refer to top level html elements 
+ everything within BODY tag get this style
+ */
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+ 
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* how to refer to  html elements by ID attribute
+ these styles will be applied to the app element
+ */
+
+#app {
+    
+    position:absolute; 
+    display:block;
+    left:0px;
+    top:0px;
+    height:100%;                   /* text area height */
+    width:100%;                   /* text area width */
+    text-align:left;
+    
+}
+
+#header {
+        position:fixed;
+        top:0px;
+        left:0px;
+        width:100%;
+        border-top:16px solid #5bc0de;
+        border-bottom:7px solid #58ce91;
+        z-index:10;
+
+    }
+
+#searchBlock {
+        position: fixed;
+        z-index: 10;
+        background-color: #fffff!important;
+        top:35px;
+        width:100%;
+    }
+
+#dataHolder {
+        position:absolute;
+        top:85px;
+    }
+

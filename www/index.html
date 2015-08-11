@@ -1,0 +1,50 @@
+<!DOCTYPE html>   <!-- DECLARATION - standard HTML5 doc will work -->
+
+<html>
+
+        <!-- HEAD - stores rendering info about the page -->
+    <head>
+
+        <!-- initailze the document paramters for rendering in browser or webView -->
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- make it feel more like an app -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <title>JDE Contacts App</title>
+    </head>
+
+        <!-- BODY - main content of the html doc -->
+    <body>
+
+        <!-- the app container -->
+        <div id="app">
+
+            <!-- div to hold the header css styles -->
+            <div id="header"></div>
+
+            <!-- bootstrap UI for text input -->
+            <div id="searchBlock" class="form-group" style="padding-left:7px;padding-right:7px"><input placeholder="filter..." type="text" class="form-control" id="searchTerm"/></div>
+
+            <!-- main div to hold customer records -->
+           <div id="dataHolder">
+
+            <!-- placeholder as a 'lazy loading' message - will get removed by results -->
+            <div class="container" style="text-align:center">Loading JDE Customer Contacts...</div>
+        </div>
+
+
+        <!-- load external CSS files -->
+        <link rel="stylesheet" href="js/bs.css" >
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <!-- load external JS files -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="searcher.js"></script>
+        <script type="text/javascript" src="js/jq.js"></script>
+        <script type="text/javascript" src="js/bs.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+
+
+</html>
