@@ -1,14 +1,11 @@
-
-
 /*title - JDE Contacts App
 author - christian.mccabe@steltix.com
 date - aug.11.2015
-details - JS training using JDE E1 AIS
-    
+details - JS training using JDE E1 AIS  
 */
 
-    // JS document level method that takes one param
-    // the function to fire when the document or device is ready
+// JS document level method that takes one param
+// the function to fire when the document or device is ready
 
 $(document).ready(function() { // document or device has been fully loaded - change to device ready for build
 
@@ -17,6 +14,10 @@ $(document).ready(function() { // document or device has been fully loaded - cha
 
     // init empty var to hold AIS token
     var token = "";
+
+    // var to hold searchterm
+
+    var searchText = "";
 
 
     // cache AIS endpoints
@@ -45,18 +46,23 @@ $(document).ready(function() { // document or device has been fully loaded - cha
             // fires a function on each key up event
             $('#searchTerm').on("keyup", function() {
 
-                // match expression for the searchTerm 
-                // and hide rows that do not match
-                var rex = new RegExp($(this).val(), 'i');
-                $('#dataTable tr').hide();
-                $('#dataTable tr').filter(function() {
-                    return rex.test($(this).text());
-                }).show();
+                searchText = $('#searchTerm').val();
 
+                console.log(searchText);
             })
         });
     };
 
+    // initialize filter function
+    filterSet();
+
+
+    $("#getResults").on("click", function(e) {
+
+        e.preventDefault();
+        getForm();
+
+    });
 
     // function to request a token from AIS
     var getToken = function() {
@@ -68,8 +74,10 @@ $(document).ready(function() { // document or device has been fully loaded - cha
             dataType: "json", // format of server response
             data: tokenRequestJSON, // form data to send with request
             type: "POST", // http method to use
+
         }).done(function(data) { // data will olhd the JSON of the server response
 
+            console.log("Server said: " + JSON.stringify(data));
             // cache user data from AIS into global JS obj userInfo
             userInfo = data.userInfo;
 
@@ -80,7 +88,7 @@ $(document).ready(function() { // document or device has been fully loaded - cha
             window.localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
             // call the getForm function
-            getForm();
+            // getForm();
         });
     };
 
@@ -95,13 +103,16 @@ $(document).ready(function() { // document or device has been fully loaded - cha
             "version": "ZJDE0001", // E1 version to run against the program
 
             // JS array of actions to be performed on the form
-            "formActions": [
-
-
-                {
+            "formActions": [{
                     "value": "C",
                     "command": "SetQBEValue",
                     "controlID": "1[50]"
+                }, 
+
+                {
+                    "command": "SetControlValue",
+                    "value": searchText,
+                    "controlID": "58"
                 },
 
                 {
@@ -118,7 +129,6 @@ $(document).ready(function() { // document or device has been fully loaded - cha
                 }
             ],
 
-
             "formName": "P01012_W01012B" // E1 program and form to make request against
 
         };
@@ -134,12 +144,11 @@ $(document).ready(function() { // document or device has been fully loaded - cha
             dataType: "json",
             data: formRequestJSON,
             type: "POST"
-
         }).done(function(data) {
 
             // view obj returned in the JS console
             console.log(JSON.stringify(data.fs_P01012_W01012B.data.gridData.rowset));
-            
+
             // array to cache the returned customer records
             var holderArray = data.fs_P01012_W01012B.data.gridData.rowset;
 
@@ -149,6 +158,7 @@ $(document).ready(function() { // document or device has been fully loaded - cha
 
             // jQuery method to loop through an array
             // in this case the returned records of customers
+
             $.each(holderArray, function(i, o) {
                 // build up temp obj to store as the ID of that ADD button
                 var obj = {};
@@ -165,8 +175,7 @@ $(document).ready(function() { // document or device has been fully loaded - cha
             // jQeury method to insert html string into the page
             $("#dataHolder").html(html);
 
-            // initialize filter function
-            filterSet();
+
 
             // function that fires on the touchstart event of ADD button
             $(".addRow").on('touchstart click', function(e) {

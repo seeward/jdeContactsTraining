@@ -24,23 +24,37 @@
             <div id="header"></div>
 
             <!-- bootstrap UI for text input -->
-            <div id="searchBlock" class="form-group" style="padding-left:7px;padding-right:7px"><input placeholder="filter..." type="text" class="form-control" id="searchTerm"/></div>
+            <br><br>
+        <div class="container" style="padding-top:30px">
 
+        <div class="row">
+                <div class="col-md-4">
+
+                    <div id="searchBlock" class="form-group">
+
+
+                    <input placeholder="Search..." type="text" class="form-control" id="searchTerm"/></div></div>
+
+               
+
+                <div class="col-md-4"><button id="getResults" class="btn btn-default">Go!</button></div>
+
+           </div>
+                
             <!-- main div to hold customer records -->
-           <div id="dataHolder">
+           <div id="dataHolder" style="padding-top:85px">
 
             <!-- placeholder as a 'lazy loading' message - will get removed by results -->
             <div class="container" style="text-align:center">Loading JDE Customer Contacts...</div>
         </div>
 
-
+</div>
         <!-- load external CSS files -->
         <link rel="stylesheet" href="js/bs.css" >
         <link rel="stylesheet" type="text/css" href="css/index.css" />
 
         <!-- load external JS files -->
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="searcher.js"></script>
         <script type="text/javascript" src="js/jq.js"></script>
         <script type="text/javascript" src="js/bs.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

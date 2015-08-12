@@ -1,6 +1,4 @@
 
-
-
 /* this will apply to all elements within the document */
 
 * {
@@ -25,19 +23,19 @@ body {
     width:100%;
 }
 
-/* how to refer to  html elements by ID attribute
+/* how to refer to  html elements by ID attribute = # and class = .
  these styles will be applied to the app element
  */
 
 #app {
     
-    position:absolute; 
+    
     display:block;
     left:0px;
     top:0px;
     height:100%;                   /* text area height */
     width:100%;                   /* text area width */
-    text-align:left;
+
     
 }
 
@@ -53,7 +51,7 @@ body {
     }
 
 #searchBlock {
-        position: fixed;
+       
         z-index: 10;
         background-color: #fffff!important;
         top:35px;
